@@ -1,10 +1,11 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import SeasonDisplay from "./SeasonDisplay"
+import React from 'react'
+import ReactDOM from 'react-dom'
+import SeasonDisplay from './SeasonDisplay'
+import Spinner from './Spinner'
 
 // Class-based Component
 class App extends React.Component {
-	state = { lat: null, errorMessage: "" }
+	state = { lat: null, errorMessage: '' }
 
 	componentDidMount() {
 		window.navigator.geolocation.getCurrentPosition(
@@ -13,8 +14,7 @@ class App extends React.Component {
 		)
 	}
 
-	// Required by React
-	render() {
+	renderContent() {
 		if (this.state.errorMessage && !this.state.lat) {
 			return <div>Error: {this.state.errorMessage}</div>
 		}
@@ -23,8 +23,17 @@ class App extends React.Component {
 			return <SeasonDisplay lat={this.state.lat} />
 		}
 
-		return <div>Loading...</div>
+		return (
+			<div>
+				<Spinner message="Please accept location request" />
+			</div>
+		)
+	}
+
+	// Required by React
+	render() {
+		return <div className="border-red">{this.renderContent()}</div>
 	}
 }
 
-ReactDOM.render(<App />, document.querySelector("#root"))
+ReactDOM.render(<App />, document.querySelector('#root'))

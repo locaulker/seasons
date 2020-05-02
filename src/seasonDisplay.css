@@ -37,3 +37,6 @@ h1 {
 .summer {
 	background-color: lightsalmon;
 }
+.ui.dimmer {
+	background: rgb(32, 73, 109);
+}
