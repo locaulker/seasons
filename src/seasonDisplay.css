@@ -1,0 +1,39 @@
+h1 {
+	font-size: 2.5rem;
+	font-weight: 100;
+	font-family: 'Raleway', sans-serif;
+	text-transform: capitalize;
+}
+
+.icon-left {
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+
+.icon-right {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+
+.season-display.winter i {
+	color: blue;
+}
+.season-display.summer i {
+	color: orangered;
+}
+
+.season-display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.winter {
+	background-color: aliceblue;
+}
+.summer {
+	background-color: lightsalmon;
+}
