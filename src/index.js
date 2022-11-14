@@ -13,13 +13,33 @@ import ReactDOM from "react-dom/client"
 
 // class-based component
 class App extends React.Component {
-  render() {
-    window.navigator.geolocation.getCurrentPosition(
-      position => console.log(position),
-      err => console.log(err)
-    )
+  constructor(props) {
+    super(props)
 
-    return <div>Latitude: </div>
+    this.state = { lat: null, errorMessage: "" }
+
+    window.navigator.geolocation.getCurrentPosition(
+      position => {
+        // to update the state, we call setState
+        this.setState({ lat: position.coords.latitude })
+      },
+      err => {
+        this.setState({ errorMessage: err.message })
+      }
+    )
+  }
+
+  // render method is required by react
+  render() {
+    if (this.state.errorMessage && !this.state.lat) {
+      return <div>Error: {this.state.errorMessage}</div>
+    }
+
+    if (!this.state.errorMessage && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>
+    }
+
+    return <div>Loading...</div>
   }
 }
 
